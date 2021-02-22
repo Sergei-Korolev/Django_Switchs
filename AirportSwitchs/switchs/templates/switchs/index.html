@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'switchs/css/bootstrap.min.css' %}">
+    <title>Switchs</title>
+</head>
+<body>
+    <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm"
+            style="background-image: url({% static 'switchs/images/background.gif' %});
+                   background-size: cover;
+                   background-position: center top;
+                   background-repeat: no-repeat;">
+        <p class="h5 my-0 me-md-auto fw-normal"
+           style="color: black;
+                      -webkit-text-stroke: 1px black;
+                      -webkit-text-fill-color: white;">Created by CVN</p>
+        <nav class="my-2 my-md-0 me-md-3">
+            <a class="p-2 text-dark" href="/admin"
+               style="color: black;
+                      -webkit-text-stroke: 1px black;
+                      -webkit-text-fill-color: white;">AdminPanel</a>
+        </nav>
+    </header>
+    <main class="container">
+        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1 class="display-4">DIGIFORT SWITCHS</h1>
+        </div>
+        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Ip-адрес</th>
+                        <th scope="col">Местонахождение</th>
+                        <th scope="col">Модель</th>
+                        <th scope="col">Всего портов</th>
+                        <th scope="col">Инфо</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for switch in switchs %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>
+                            <a class="p-2 text-dark" href="http://{{ switch.ip_address }}" target="_blank">{{ switch.ip_address }}</a>
+                        </td>
+                        <td>{{ switch.location }}</td>
+                        <td>{{ switch.device_model }}</td>
+                        <td>{{ switch.number_of_ports }}</td>
+                        <td>
+                            <a class="p-2 text-dark" href="{% url 'switchs:detail' switch.id %}">Click me</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+</html>
