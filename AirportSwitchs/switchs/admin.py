@@ -14,6 +14,7 @@ class SwitchPorts(admin.ModelAdmin):
     ]
     inlines = [PortInline]
 
+
 admin.site.register(Switch, SwitchPorts)
 admin.site.register(DeviceType)
 admin.site.register(Port)

@@ -12,6 +12,7 @@ class Switch(models.Model):
     def __str__(self):
         return '{}'.format(self.ip_address)
 
+
 class DeviceType(models.Model):
     device_type = models.CharField(max_length=50, null=True, blank=True)
 
@@ -40,7 +41,6 @@ class Port(models.Model):
     device_type = models.ForeignKey(DeviceType, null=True, blank=True, on_delete=models.SET_NULL)
     port_type = models.ForeignKey(PortType, on_delete=models.SET_DEFAULT, default=1)
     port_vlan_id = models.ForeignKey(PortVlan, null=True, on_delete=models.SET_DEFAULT, default=1)
-
 
     def __str__(self):
         return '{} port ({}) on {} is {}:{} in {} vlan'.format(self.number_port,
